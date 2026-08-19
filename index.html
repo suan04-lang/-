@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <title>취하냥 - 인터랙티브 음주 기록 PWA</title>
+    <meta name="description" content="음주량을 기록하면 고양이가 함께 마시고 취해가는 재미있는 PWA 음주 기록 앱" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    
+    <!-- PWA Settings -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="취하냥" />
+    
+    <!-- iOS Apple Touch Icons (PNG is required for iOS Safari Home Screen) -->
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png" />
+    <link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-precomposed.png" />
+    
+    <!-- Standard & Android Icons -->
+    <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+    <link rel="icon" type="image/png" sizes="64x64" href="/favicon.png" />
+    <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="취하냥 - 인터랙티브 음주 기록 로그" />
+    <meta property="og:description" content="술을 마실 때마다 고양이가 점점 취해가는 실시간 음주 트래커" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/apple-touch-icon.png" />
+  </head>
+  <body class="bg-slate-100 text-slate-800 antialiased select-none overflow-x-hidden">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    <script>
+      // Automated Service Worker registration and instant auto-update
+      if ('serviceWorker' in navigator) {
+        let refreshing = false;
+
+        // When a new service worker takes control, refresh page automatically
+        navigator.serviceWorker.addEventListener('controllerchange', () => {
+          if (!refreshing) {
+            refreshing = true;
+            window.location.reload();
+          }
+        });
+
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js').then((registration) => {
+            // Check for updates periodically
+            setInterval(() => {
+              registration.update();
+            }, 60 * 1000);
+
+            // Auto-check for updates whenever user returns to the app
+            document.addEventListener('visibilitychange', () => {
+              if (document.visibilityState === 'visible') {
+                registration.update();
+              }
+            });
+
+            window.addEventListener('focus', () => {
+              registration.update();
+            });
+
+            // If a new worker is already waiting, activate it immediately
+            if (registration.waiting) {
+              registration.waiting.postMessage({ type: 'SKIP_WAITING' });
+            }
+
+            registration.addEventListener('updatefound', () => {
+              const newWorker = registration.installing;
+              if (newWorker) {
+                newWorker.addEventListener('statechange', () => {
+                  if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                    newWorker.postMessage({ type: 'SKIP_WAITING' });
+                  }
+                });
+              }
+            });
+          }).catch((err) => {
+            console.warn('SW registration error:', err);
+          });
+        });
+      }
+    </script>
+  </body>
+</html>

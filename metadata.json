@@ -1,0 +1,6 @@
+{
+  "name": "취하냥 음주로그 (DrunkLog PWA)",
+  "description": "귀여운 고양이 캐릭터와 함께하는 실시간 음주 및 연속 금주 챌린지, 절약 술값 누적 계산, 인터랙티브 캘린더 PWA 앱",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

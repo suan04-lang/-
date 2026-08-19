@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient spanning whole canvas for maskable full bleed -->
+    <linearGradient id="maskBgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#064e3b"/>
+      <stop offset="50%" stop-color="#022c22"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+
+    <!-- Soju Glass Bottle Emerald Gradient -->
+    <linearGradient id="maskBottleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#34d399"/>
+      <stop offset="40%" stop-color="#10b981"/>
+      <stop offset="80%" stop-color="#059669"/>
+      <stop offset="100%" stop-color="#047857"/>
+    </linearGradient>
+
+    <!-- Glass Bottle Highlights -->
+    <linearGradient id="maskGlassShine" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.8"/>
+      <stop offset="50%" stop-color="#ffffff" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+
+    <!-- Splash Liquid Gradient -->
+    <linearGradient id="maskSplashGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#a7f3d0"/>
+      <stop offset="50%" stop-color="#34d399"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+
+    <!-- Glow Effect for Dramatic Break -->
+    <filter id="maskShardGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Full Bleed Background for Android Maskable Icons -->
+  <rect width="512" height="512" fill="url(#maskBgGrad)"/>
+
+  <!-- Scaled content inside 80% safe zone (Center = 256, Scale = 0.8) -->
+  <g transform="translate(51.2, 51.2) scale(0.8)">
+    <!-- Outer subtle circular aura -->
+    <circle cx="256" cy="256" r="215" fill="none" stroke="#34d399" stroke-width="3" stroke-opacity="0.25" stroke-dasharray="12 16"/>
+
+    <!-- Dramatic Impact Shockwave Ring -->
+    <circle cx="256" cy="245" r="90" fill="none" stroke="#6ee7b7" stroke-width="2.5" stroke-opacity="0.4" stroke-dasharray="8 10"/>
+
+    <!-- Liquid Splashes / Droplets Bursting from Break Point -->
+    <path d="M 230 225 Q 170 170 130 195 Q 165 240 215 250 Z" fill="url(#maskSplashGrad)" opacity="0.9" filter="url(#maskShardGlow)"/>
+    <circle cx="120" cy="175" r="14" fill="#6ee7b7" filter="url(#maskShardGlow)"/>
+    <circle cx="95" cy="225" r="9" fill="#a7f3d0"/>
+    <circle cx="145" cy="140" r="7" fill="#34d399"/>
+    <circle cx="175" cy="290" r="11" fill="#10b981"/>
+
+    <!-- Right Splashes -->
+    <path d="M 285 235 Q 345 180 385 210 Q 345 260 295 265 Z" fill="url(#maskSplashGrad)" opacity="0.95" filter="url(#maskShardGlow)"/>
+    <circle cx="395" cy="195" r="16" fill="#6ee7b7" filter="url(#maskShardGlow)"/>
+    <circle cx="420" cy="250" r="10" fill="#a7f3d0"/>
+    <circle cx="360" cy="155" r="8" fill="#34d399"/>
+    <circle cx="340" cy="310" r="12" fill="#10b981"/>
+
+    <!-- Broken Top Half -->
+    <g transform="translate(-18, -22) rotate(-14 256 240)">
+      <rect x="228" y="72" width="56" height="22" rx="5" fill="#047857" stroke="#10b981" stroke-width="2"/>
+      <rect x="234" y="76" width="44" height="6" rx="2" fill="#6ee7b7" opacity="0.9"/>
+      
+      <rect x="236" y="92" width="40" height="60" fill="url(#maskBottleGrad)" stroke="#047857" stroke-width="1.5"/>
+      <rect x="240" y="92" width="8" height="60" fill="url(#maskGlassShine)"/>
+
+      <rect x="230" y="136" width="52" height="12" rx="4" fill="#059669" stroke="#10b981" stroke-width="1.5"/>
+
+      <path d="M 236 148 C 230 175 198 200 196 230 L 194 255 L 218 242 L 232 260 L 256 235 L 278 262 L 298 238 L 316 256 L 316 230 C 314 200 282 175 276 148 Z" 
+            fill="url(#maskBottleGrad)" stroke="#6ee7b7" stroke-width="3.5" stroke-linejoin="round"/>
+
+      <path d="M 206 220 C 208 195 235 170 242 152" fill="none" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round" opacity="0.6"/>
+      <polygon points="218,242 232,260 226,244" fill="#ffffff" opacity="0.75"/>
+      <polygon points="256,235 278,262 268,240" fill="#ffffff" opacity="0.75"/>
+    </g>
+
+    <!-- Broken Bottom Half -->
+    <g transform="translate(18, 24) rotate(12 256 270)">
+      <path d="M 194 285 L 220 262 L 238 290 L 262 260 L 282 288 L 304 266 L 318 290 L 318 395 C 318 418 298 426 276 426 L 236 426 C 214 426 194 418 194 395 Z" 
+            fill="url(#maskBottleGrad)" stroke="#6ee7b7" stroke-width="3.5" stroke-linejoin="round"/>
+
+      <path d="M 196 395 C 196 414 212 422 236 422 L 276 422 C 300 422 316 414 316 395 L 316 385 L 196 385 Z" fill="#047857" opacity="0.7"/>
+
+      <rect x="208" y="300" width="96" height="78" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+      <path d="M 208 308 C 208 303.5 211.5 300 216 300 L 296 300 C 300.5 300 304 303.5 304 308 L 304 320 L 208 320 Z" fill="#059669"/>
+      
+      <polygon points="248,314 252,306 256,314" fill="#ffffff"/>
+      <polygon points="256,314 260,306 264,314" fill="#ffffff"/>
+      
+      <text x="256" y="344" font-size="21" font-weight="900" text-anchor="middle" fill="#047857" font-family="'Noto Sans KR', -apple-system, sans-serif" letter-spacing="-0.5">취하냥</text>
+      <text x="256" y="364" font-size="11" font-weight="800" text-anchor="middle" fill="#10b981" font-family="sans-serif" letter-spacing="1">SOBER &amp; DRUNK</text>
+
+      <path d="M 204 295 L 204 395" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round" opacity="0.5"/>
+      <path d="M 308 298 L 308 395" stroke="#ffffff" stroke-width="2" stroke-linecap="round" opacity="0.3"/>
+    </g>
+
+    <!-- Flying Shards -->
+    <polygon points="175,230 150,265 190,258" fill="#6ee7b7" opacity="0.95" stroke="#ffffff" stroke-width="2" filter="url(#maskShardGlow)"/>
+    <polygon points="250,235 272,265 240,260" fill="#a7f3d0" opacity="0.95" stroke="#ffffff" stroke-width="2" filter="url(#maskShardGlow)"/>
+    <polygon points="325,220 355,248 330,268" fill="#34d399" opacity="0.95" stroke="#ffffff" stroke-width="2" filter="url(#maskShardGlow)"/>
+    <polygon points="140,310 115,335 155,348" fill="#059669" opacity="0.9" stroke="#6ee7b7" stroke-width="1.8"/>
+    <polygon points="370,290 400,318 360,335" fill="#10b981" opacity="0.9" stroke="#6ee7b7" stroke-width="1.8"/>
+    <polygon points="205,210 215,222 202,225" fill="#ffffff" opacity="0.9"/>
+    <polygon points="305,215 315,228 300,232" fill="#ffffff" opacity="0.9"/>
+    <polygon points="228,275 236,285 224,288" fill="#ffffff" opacity="0.9"/>
+    <polygon points="280,270 290,282 278,285" fill="#ffffff" opacity="0.9"/>
+
+    <!-- Sparks -->
+    <polygon points="256,236 261,246 272,248 263,256 266,267 256,260 246,267 249,256 240,248 251,246" fill="#ffffff" filter="url(#maskShardGlow)"/>
+    <polygon points="180,200 183,207 190,209 184,214 186,221 180,217 174,221 176,214 170,209 177,207" fill="#ffffff"/>
+    <polygon points="330,205 333,212 340,214 334,219 336,226 330,222 324,226 326,219 320,214 327,212" fill="#ffffff"/>
+    <polygon points="256,290 258,295 264,297 259,301 261,307 256,303 251,307 253,301 248,297 254,295" fill="#ffffff"/>
+  </g>
+</svg>
